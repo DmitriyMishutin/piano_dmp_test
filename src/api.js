@@ -88,7 +88,7 @@ const api = (() => {
             return Promise.reject({ error, id: task.id });
         }
 
-        state = state.map((t) => (t.id === task.id ? task : t));
+        state = state.map((t) => (t.id === task.id ? { ...task } : t));
         return Promise.resolve(task);
     };
 
@@ -114,7 +114,7 @@ const api = (() => {
             return acc;
         }, {});
 
-        state = state.map((t) => (taskMap[t.id] ? taskMap[t.id] : t));
+        state = state.map((t) => (taskMap[t.id] ? { ...taskMap[t.id] } : t));
 
         return Promise.resolve(tasks);
     };
